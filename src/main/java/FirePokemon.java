@@ -58,7 +58,37 @@ public class FirePokemon extends Pokemon {
      * Implement this.
      */
     public boolean attack(final Pokemon opponent) {
-        return false;
+        boolean inRange = super.attack(opponent);
+        if (inRange) {
+            return true;
+        }
+        /*
+         * Roll the damage dice and compute total damage.
+         */
+        int damage1 = d6.roll();
+        int damage2 = d6.roll();
+        int damage3 = d6.roll();
+        int totalDamage = damage1 + damage2 + damage3;
+
+        if (opponent.pokeType != PokemonType.FIRE && totalDamage >= opponent.getHitPoints()) {
+            double attackProb = specialtyProbability;
+            double defenseProb = Math.random();
+            System.out.println(getName() + " is attacking " + opponent.getName());
+            if (attackProb > defenseProb) {
+                opponent.setHitPoints(0);
+                System.out.println(getName() + " executes a specialty attack... "
+                        + specialtyAttack + "!!!");
+                System.out.println(opponent.getName() + " has been defeated!");
+                return true;
+            }
+                System.out.println(getName() + " executes a specialty attack... "
+                        + specialtyAttack + "!!!");
+                System.out.println("The attack missed!");
+            }
+
+            return false;
+        }
+
     }
 
-}
+
