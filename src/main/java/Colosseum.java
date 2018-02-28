@@ -126,7 +126,8 @@ public class Colosseum {
         }
 
         System.out.println("Please name your Pokemon: ");
-        tempPokemon.setName(myScan.next());
+        myScan.nextLine();
+        tempPokemon.setName(myScan.nextLine());
 
         System.out.println("How many hit points will it have? (1-50): ");
         boolean isValidHP = false;
